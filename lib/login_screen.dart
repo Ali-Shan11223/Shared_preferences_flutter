@@ -20,7 +20,13 @@ class _LogInScreenState extends State<LogInScreen> {
             padding: const EdgeInsets.all(10),
             child: InkWell(
               onTap: () async {
-                
+                SharedPreferences sp = await SharedPreferences.getInstance();
+                sp.setString('Email', 'jonah2114@gmail.com');
+                sp.setString('Name', 'Ali Shan');
+                sp.setInt('Age', 25);
+                print(sp.getString('Email'));
+                print(sp.getString('Name'));
+                print(sp.getInt('Age').toString());
               },
               child: Container(
                 height: 50,
