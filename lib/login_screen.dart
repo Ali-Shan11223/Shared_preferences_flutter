@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shared_preferences/home_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LogInScreen extends StatefulWidget {
@@ -10,7 +11,7 @@ class LogInScreen extends StatefulWidget {
 
 class _LogInScreenState extends State<LogInScreen> {
   TextEditingController emailController = TextEditingController();
-  TextEditingController passController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
   TextEditingController ageController = TextEditingController();
 
   @override
@@ -40,7 +41,7 @@ class _LogInScreenState extends State<LogInScreen> {
               height: 10,
             ),
             TextFormField(
-              controller: passController,
+              controller: nameController,
               keyboardType: TextInputType.name,
               decoration: InputDecoration(
                   contentPadding: EdgeInsets.zero,
@@ -75,13 +76,15 @@ class _LogInScreenState extends State<LogInScreen> {
             ),
             InkWell(
               onTap: () async {
-                // SharedPreferences sp = await SharedPreferences.getInstance();
-                // sp.setString('Email', 'jonah2114@gmail.com');
-                // sp.setString('Name', 'Ali Shan');
-                // sp.setInt('Age', 25);
-                // print(sp.getString('Email'));
-                // print(sp.getString('Name'));
-                // print(sp.getInt('Age').toString());
+                SharedPreferences sp = await SharedPreferences.getInstance();
+                sp.setString('Email', emailController.text.toString());
+                sp.setString('Name', nameController.text.toString());
+                sp.setString('Age', ageController.text.toString());
+                sp.setBool('isLogin', true);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const HomeScreen()));
               },
               child: Container(
                 height: 50,
