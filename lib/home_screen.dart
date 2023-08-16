@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shared_preferences/login_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -18,6 +19,9 @@ class _HomeScreenState extends State<HomeScreen> {
     email = sp.getString('Email')!;
     name = sp.getString('Name')!;
     age = sp.getString('Age')!;
+    setState(() {
+      
+    });
   }
 
   @override
@@ -33,23 +37,46 @@ class _HomeScreenState extends State<HomeScreen> {
         automaticallyImplyLeading: false,
         title: const Text('HomeScreen'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [Text('Email'), Text(email.toString())],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [Text('Name'), Text(name.toString())],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [Text('Age'), Text(age.toString())],
-          )
-        ],
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [const Text('Email'), Text(email)],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [const Text('Name'), Text(name)],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [const Text('Age'), Text(age)],
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            InkWell(
+              onTap: () async {
+                SharedPreferences sp = await SharedPreferences.getInstance();
+                sp.clear();
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const LogInScreen()));
+              },
+              child: Container(
+                height: 50,
+                decoration: BoxDecoration(
+                    color: Colors.green,
+                    borderRadius: BorderRadius.circular(10)),
+                child: const Center(child: Text('LogIn')),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
