@@ -36,7 +36,7 @@ class _AdminScreenState extends State<AdminScreen> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text('AdminScreen'),
+        title: const Text('Admin Screen'),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -77,7 +77,7 @@ class _AdminScreenState extends State<AdminScreen> {
                 decoration: BoxDecoration(
                     color: Colors.green,
                     borderRadius: BorderRadius.circular(10)),
-                child: const Center(child: Text('LogIn')),
+                child: const Center(child: Text('Logout')),
               ),
             )
           ],

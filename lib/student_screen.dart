@@ -35,7 +35,7 @@ class _StudentScreenState extends State<StudentScreen> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text('StudentScreen'),
+        title: const Text('Student Screen'),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -76,7 +76,7 @@ class _StudentScreenState extends State<StudentScreen> {
                 decoration: BoxDecoration(
                     color: Colors.green,
                     borderRadius: BorderRadius.circular(10)),
-                child: const Center(child: Text('LogIn')),
+                child: const Center(child: Text('Logout')),
               ),
             )
           ],

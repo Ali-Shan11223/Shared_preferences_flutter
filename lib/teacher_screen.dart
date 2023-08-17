@@ -36,7 +36,7 @@ class _TeacherScreenState extends State<TeacherScreen> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text('TeacherScreen'),
+        title: const Text('Teacher Screen'),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -77,7 +77,7 @@ class _TeacherScreenState extends State<TeacherScreen> {
                 decoration: BoxDecoration(
                     color: Colors.green,
                     borderRadius: BorderRadius.circular(10)),
-                child: const Center(child: Text('LogIn')),
+                child: const Center(child: Text('Logout')),
               ),
             )
           ],

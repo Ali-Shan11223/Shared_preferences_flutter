@@ -16,6 +16,8 @@ class _LogInScreenState extends State<LogInScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   TextEditingController ageController = TextEditingController();
+  String dropDownValue = 'Admin';
+  List<String> dropDownList = ['Admin', 'Teacher', 'Student'];
 
   @override
   Widget build(BuildContext context) {
@@ -77,15 +79,48 @@ class _LogInScreenState extends State<LogInScreen> {
             const SizedBox(
               height: 20,
             ),
+            DropdownButton(
+                value: dropDownValue,
+                items:
+                    dropDownList.map<DropdownMenuItem<String>>((String value) {
+                  return DropdownMenuItem(value: value, child: Text(value));
+                }).toList(),
+                onChanged: (String? newValue) async {
+                  SharedPreferences sp = await SharedPreferences.getInstance();
+                  // sp.setString('Type', 'Admin');
+                  // sp.setString('Type', 'Teacher');
+                  sp.setString('Type', 'Student');
+                  newValue = sp.getString('Type');
+                  setState(() {
+                    print(newValue.toString());
+                    dropDownValue = newValue!;
+                  });
+                }),
+            const SizedBox(
+              height: 20,
+            ),
             InkWell(
               onTap: () async {
                 SharedPreferences sp = await SharedPreferences.getInstance();
                 sp.setString('Email', emailController.text.toString());
                 sp.setString('Name', nameController.text.toString());
                 sp.setString('Age', ageController.text.toString());
-                sp.setString('Type', 'Student');
+
                 sp.setBool('isLogin', true);
-                if (sp.getString('Type') == 'Student') {
+                if (sp.getString('Type') == 'Admin') {
+                  print('Admin fnc');
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const AdminScreen()));
+                } else if (sp.getString('Type') == 'Teacher') {
+                  print('Teacher fnc');
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const TeacherScreen()));
+                } else if (sp.getString('Type') == 'Student') {
+                  print('Student fnc');
                   Navigator.push(
                       context,
                       MaterialPageRoute(
