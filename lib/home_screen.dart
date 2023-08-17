@@ -10,7 +10,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  
   String email = '';
   String age = '';
   String name = '';
@@ -20,9 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
     email = sp.getString('Email')!;
     name = sp.getString('Name')!;
     age = sp.getString('Age')!;
-    setState(() {
-      
-    });
+    setState(() {});
   }
 
   @override
@@ -73,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 decoration: BoxDecoration(
                     color: Colors.green,
                     borderRadius: BorderRadius.circular(10)),
-                child: const Center(child: Text('LogIn')),
+                child: const Center(child: Text('Logout')),
               ),
             )
           ],

@@ -86,14 +86,11 @@ class _LogInScreenState extends State<LogInScreen> {
                   return DropdownMenuItem(value: value, child: Text(value));
                 }).toList(),
                 onChanged: (String? newValue) async {
-                  SharedPreferences sp = await SharedPreferences.getInstance();
-                  // sp.setString('Type', 'Admin');
-                  // sp.setString('Type', 'Teacher');
-                  sp.setString('Type', 'Student');
-                  newValue = sp.getString('Type');
+                  // SharedPreferences sp = await SharedPreferences.getInstance();
+
                   setState(() {
-                    print(newValue.toString());
                     dropDownValue = newValue!;
+                    print(newValue.toString());
                   });
                 }),
             const SizedBox(
@@ -126,6 +123,7 @@ class _LogInScreenState extends State<LogInScreen> {
                       MaterialPageRoute(
                           builder: (context) => const StudentScreen()));
                 } else {
+                  print('condition not matched');
                   Navigator.push(
                       context,
                       MaterialPageRoute(
