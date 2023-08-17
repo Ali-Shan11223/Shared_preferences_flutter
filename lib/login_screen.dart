@@ -19,6 +19,8 @@ class _LogInScreenState extends State<LogInScreen> {
   String dropDownValue = 'Admin';
   List<String> dropDownList = ['Admin', 'Teacher', 'Student'];
 
+  String userType = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,6 +81,9 @@ class _LogInScreenState extends State<LogInScreen> {
             const SizedBox(
               height: 20,
             ),
+            // I want to store users in sahred preferences
+            // in dropdown button. For example when i select user(i.e Admin from dropdown), so it navigate
+            // to Admin Screen.
             DropdownButton(
                 value: dropDownValue,
                 items:
@@ -86,8 +91,6 @@ class _LogInScreenState extends State<LogInScreen> {
                   return DropdownMenuItem(value: value, child: Text(value));
                 }).toList(),
                 onChanged: (String? newValue) async {
-                  // SharedPreferences sp = await SharedPreferences.getInstance();
-
                   setState(() {
                     dropDownValue = newValue!;
                     print(newValue.toString());
@@ -102,7 +105,7 @@ class _LogInScreenState extends State<LogInScreen> {
                 sp.setString('Email', emailController.text.toString());
                 sp.setString('Name', nameController.text.toString());
                 sp.setString('Age', ageController.text.toString());
-
+                sp.setString('Type', 'Admin');
                 sp.setBool('isLogin', true);
                 if (sp.getString('Type') == 'Admin') {
                   print('Admin fnc');
