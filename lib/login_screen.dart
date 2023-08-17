@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shared_preferences/admin_screen.dart';
 import 'package:flutter_shared_preferences/home_screen.dart';
+import 'package:flutter_shared_preferences/student_screen.dart';
+import 'package:flutter_shared_preferences/teacher_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LogInScreen extends StatefulWidget {
@@ -80,11 +83,19 @@ class _LogInScreenState extends State<LogInScreen> {
                 sp.setString('Email', emailController.text.toString());
                 sp.setString('Name', nameController.text.toString());
                 sp.setString('Age', ageController.text.toString());
+                sp.setString('Type', 'Student');
                 sp.setBool('isLogin', true);
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const HomeScreen()));
+                if (sp.getString('Type') == 'Student') {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const StudentScreen()));
+                } else {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const HomeScreen()));
+                }
               },
               child: Container(
                 height: 50,
